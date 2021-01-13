@@ -36,15 +36,7 @@ final class Puny
             exit(1);
         }
 
-        $files = scandir($this->root);
-
-        foreach ($files as $file) {
-            if (in_array($file, ['.', '..'])) {
-                continue;
-            }
-
-            require_once $this->root.'/'.$file;
-        }
+        self::includeTestFiles($this->root);
 
         foreach (static::$tests as $name => $callback) {
             try {
@@ -75,6 +67,25 @@ final class Puny
             $this->failed,
             $this->skipped,
         ));
+    }
+
+    private static function includeTestFiles(string $path)
+    {
+        $files = scandir($path);
+
+        foreach ($files as $file) {
+            if (in_array($file, ['.', '..'])) {
+                continue;
+            }
+
+            $target = $path.'/'.$file;
+
+            if (is_dir($target)) {
+                self::includeTestFiles($target);
+            } else {
+                require_once $target;
+            }
+        }
     }
 
     public static function register(string $test, \Closure $callback)
