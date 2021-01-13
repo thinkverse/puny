@@ -1,0 +1,18 @@
+{
+    "name": "ryangjchandler/puny",
+    "description": "The simplest unit testing library for all things PHP.",
+    "authors": [
+        {
+            "name": "Ryan Chandler",
+            "email": "support@ryangjchandler.co.uk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Puny\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    }
+}

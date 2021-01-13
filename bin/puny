@@ -1,0 +1,24 @@
+#!/usr/bin/env php
+<?php
+
+use Puny\Puny;
+use Puny\Support\Console;
+
+const VERSION = '0.0.1';
+
+(static function () {
+    $vendorPath = dirname(__DIR__, 4) . '/vendor/autoload.php';
+    $localPath = dirname(__DIR__) . '/vendor/autoload.php';
+    $rootPath = null;
+
+    if (is_readable($vendorPath)) {
+        require_once $vendorPath;
+        $rootPath = dirname($vendorPath, 2) . '/tests';
+    } else {
+        require_once $localPath;
+        $rootPath = dirname($localPath, 2) . '/tests';
+    }
+
+    Puny::instance()
+        ->run($rootPath);
+})();
