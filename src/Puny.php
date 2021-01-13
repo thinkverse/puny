@@ -14,6 +14,10 @@ final class Puny
 
     private static array $tests = [];
 
+    private int $failed = 0;
+
+    private int $skipped = 0;
+
     public function setRoot(string $path)
     {
         $this->root = $path;
@@ -42,8 +46,6 @@ final class Puny
             require_once $this->root.'/'.$file;
         }
 
-        $errors = [];
-
         foreach (static::$tests as $name => $callback) {
             try {
                 $callback();
@@ -52,6 +54,7 @@ final class Puny
             } catch (\Throwable $e) {
                 if ($e instanceof SkippedException) {
                     Console::warning("\xE2\x9A\xA0 {$name}");
+                    $this->skipped++;
                     continue;
                 }
 
@@ -60,8 +63,18 @@ final class Puny
                 }
 
                 Console::error("\xF0\x90\x84\x82 {$name} > {$e->getMessage()}");
+
+                $this->failed++;
             }
         }
+
+        Console::write(sprintf(
+            "%s tests run. %s passed. %s failed. %s skipped.",
+            count(static::$tests),
+            count(static::$tests) - $this->failed - $this->skipped,
+            $this->failed,
+            $this->skipped,
+        ));
     }
 
     public static function register(string $test, \Closure $callback)

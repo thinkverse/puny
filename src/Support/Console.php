@@ -8,6 +8,12 @@ final class Console
         'green' => '32'
     ];
 
+    public static function write(string $output)
+    {
+        static::reset();
+        echo $output.PHP_EOL;
+    }
+
     public static function info(string $output)
     {
         echo "\e[0;32m{$output}".PHP_EOL;
