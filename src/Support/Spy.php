@@ -20,11 +20,13 @@ final class Spy
         $this->called[] = $args;
 
         try {
-            ($this->callback)(...$args);
+            $result = ($this->callback)(...$args);
 
             $this->thrown[] = null;
         } catch (\Throwable $e) {
             $this->thrown[] = $e;
         }
+
+        return $result ?? null;
     }
 }
