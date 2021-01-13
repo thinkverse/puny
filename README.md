@@ -1,1 +1,1 @@
-![Puny screenshot](./docs/sneak.png)
+![Puny screenshot](./docs/sneak.png | width=250)
