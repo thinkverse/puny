@@ -77,5 +77,14 @@ test('Example', function () {
 
     ok($spied->called[0] === ['Hello'], 'args stored correctly');
     ok($result === 'Hello', 'returns result correctly');
+
+    $exception = spy(function () {
+        throw new Exception;
+    });
+
+    $exception();
+
+    ok(count($exception->thrown) === 1, 'exceptions stored correctly');
+    ok($exception->thrown[0] instanceof Exception, 'exceptions stored are objects');
 });
 ```
