@@ -1,1 +1,3 @@
-<img src="./docs/sneak.png" width="250" align="center">
+<p align="center">
+    <img src="./docs/sneak.png" width="375">
+</p>
