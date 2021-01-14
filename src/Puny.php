@@ -31,11 +31,14 @@ final class Puny
             $this->setRoot($path);
         }
 
+        Console::write('Puny v'.PUNY_VERSION);
+
         if (! is_dir($this->root)) {
             Console::error("The tests directory does not exist ({$this->root}).");
             exit(1);
         }
 
+        self::includeBootstrapFile($this->root.'/bootstrap.php');
         self::includeTestFiles($this->root);
 
         foreach (static::$tests as $name => $callback) {
@@ -60,6 +63,8 @@ final class Puny
             }
         }
 
+        self::includeTidyUpFile($this->root.'/tidy-up.php');
+
         Console::write(sprintf(
             "%s tests run. %s passed. %s failed. %s skipped.",
             count(static::$tests),
@@ -69,9 +74,29 @@ final class Puny
         ));
     }
 
+    private static function includeBootstrapFile(string $path)
+    {
+        if (! is_readable($path)) {
+            return;
+        }
+
+        require_once $path;
+    }
+
+    private static function includeTidyUpFile(string $path)
+    {
+        if (! is_readable($path)) {
+            return;
+        }
+
+        require_once $path;
+    }
+
     private static function includeTestFiles(string $path)
     {
-        $files = scandir($path);
+        $files = array_filter(scandir($path), function ($file) {
+            return ! in_array($file, ['bootstrap.php', 'tidy-up.php', '.', '..']);
+        });
 
         foreach ($files as $file) {
             if (in_array($file, ['.', '..'])) {
