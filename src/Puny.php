@@ -63,6 +63,8 @@ final class Puny
             }
         }
 
+        self::includeTidyUpFile($this->root.'/tidy-up.php');
+
         Console::write(sprintf(
             "%s tests run. %s passed. %s failed. %s skipped.",
             count(static::$tests),
@@ -81,9 +83,20 @@ final class Puny
         require_once $path;
     }
 
+    private static function includeTidyUpFile(string $path)
+    {
+        if (! is_readable($path)) {
+            return;
+        }
+
+        require_once $path;
+    }
+
     private static function includeTestFiles(string $path)
     {
-        $files = scandir($path);
+        $files = array_filter(scandir($path), function ($file) {
+            return ! in_array($file, ['bootstrap.php', 'tidy-up.php', '.', '..']);
+        });
 
         foreach ($files as $file) {
             if (in_array($file, ['.', '..'])) {
