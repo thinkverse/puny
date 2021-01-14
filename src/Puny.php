@@ -38,6 +38,7 @@ final class Puny
             exit(1);
         }
 
+        self::includeBootstrapFile($this->root.'/bootstrap.php');
         self::includeTestFiles($this->root);
 
         foreach (static::$tests as $name => $callback) {
@@ -69,6 +70,15 @@ final class Puny
             $this->failed,
             $this->skipped,
         ));
+    }
+
+    private static function includeBootstrapFile(string $path)
+    {
+        if (! is_readable($path)) {
+            return;
+        }
+
+        require_once $path;
     }
 
     private static function includeTestFiles(string $path)
