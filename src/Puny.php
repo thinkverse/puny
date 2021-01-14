@@ -31,6 +31,8 @@ final class Puny
             $this->setRoot($path);
         }
 
+        Console::write('Puny v'.PUNY_VERSION);
+
         if (! is_dir($this->root)) {
             Console::error("The tests directory does not exist ({$this->root}).");
             exit(1);
