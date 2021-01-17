@@ -3,7 +3,7 @@
 
 use Puny\Puny;
 
-define('PUNY_VERSION', '0.0.1');
+define('PUNY_VERSION', '0.0.3');
 
 (static function () {
     $vendorPath = dirname(__DIR__, 4) . '/vendor/autoload.php';
