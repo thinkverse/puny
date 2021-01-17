@@ -38,7 +38,7 @@ final class Puny
             exit(1);
         }
 
-        self::includeBootstrapFile($this->root.'/bootstrap.php');
+        self::requireIfReadable($this->root.'/bootstrap.php');
         self::includeTestFiles($this->root);
 
         foreach (static::$tests as $name => $callback) {
@@ -63,7 +63,7 @@ final class Puny
             }
         }
 
-        self::includeTidyUpFile($this->root.'/tidy-up.php');
+        self::requireIfReadable($this->root.'/tidy-up.php');
 
         Console::write(sprintf(
             "%s tests run. %s passed. %s failed. %s skipped.",
@@ -74,16 +74,7 @@ final class Puny
         ));
     }
 
-    private static function includeBootstrapFile(string $path)
-    {
-        if (! is_readable($path)) {
-            return;
-        }
-
-        require_once $path;
-    }
-
-    private static function includeTidyUpFile(string $path)
+    private static function requireIfReadable(string $path)
     {
         if (! is_readable($path)) {
             return;
@@ -108,7 +99,7 @@ final class Puny
             if (is_dir($target)) {
                 self::includeTestFiles($target);
             } else {
-                require_once $target;
+                self::requireIfReadable($target);
             }
         }
     }
