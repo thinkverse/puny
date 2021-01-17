@@ -15,5 +15,8 @@ jobs:
           php-version: '7.4'
           coverage: none
 
+      - name: Run `composer install`
+        run: composer install -n --prefer-dist
+
       - name: Run tests
         run: ./bin/puny
