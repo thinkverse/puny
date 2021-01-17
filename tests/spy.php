@@ -1,36 +1,29 @@
 <?php
 
-use function Puny\{test, spy, ok};
+use function Puny\ok;
+use function Puny\spy;
+use function Puny\test;
 
-test('Spy', function () {
-    $spied = spy(function () {
-
-    });
-
-    $spied();
-
-    ok($spied->called[0] === [], 'stores args correctly');
-    ok($spied->thrown[0] === null, 'stores exceptions correctly');
+test('The `spy` function works', function () {
+    spy(function () {});
 });
 
-test('Example', function () {
-    $spied = spy(function ($out) {
-        return $out;
-    });
+test('The `spy` function tracks invocations', function () {
+    $spy = spy(function () {});
 
-    ok(count($spied->called) === 0, 'not yet called');
+    $spy('Testing');
 
-    $result = $spied('Hello');
+    ok(count($spy->called) === 1, '`spy` tracks number of invocations.');
+    ok($spy->called[0][0] === 'Testing', '`spy` tracks arguments passed when invoking.');
+});
 
-    ok($spied->called[0] === ['Hello'], 'args stored correctly');
-    ok($result === 'Hello', 'returns result correctly');
-
-    $exception = spy(function () {
+test('The `spy` function tracks exceptions', function () {
+    $spy = spy(function () {
         throw new Exception;
     });
 
-    $exception();
+    $spy();
 
-    ok(count($exception->thrown) === 1, 'exceptions stored correctly');
-    ok($exception->thrown[0] instanceof Exception, 'exceptions stored are objects');
+    ok(count($spy->thrown) === 1, '`spy` tracks exceptions thrown.');
+    ok($spy->thrown[0] instanceof Exception, '`spy` stores exceptions thrown.');
 });

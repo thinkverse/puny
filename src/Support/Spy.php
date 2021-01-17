@@ -2,9 +2,11 @@
 
 namespace Puny\Support;
 
+use Closure;
+
 final class Spy
 {
-    private \Closure $callback;
+    private Closure $callback;
 
     public array $called = [];
 

@@ -18,6 +18,10 @@ function ok(bool $check, string $id) {
     return true;
 }
 
+function okay(bool $check, string $id) {
+    return ok($check, $id);
+}
+
 function spy(callable $callback) {
     return new Spy($callback);
 }
