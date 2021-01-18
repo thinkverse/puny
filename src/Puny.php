@@ -18,14 +18,22 @@ final class Puny
 
     private int $skipped = 0;
 
+    private array $options = [
+        'filter' => null,
+    ];
+
     public function setRoot(string $path)
     {
+        if (! is_dir($path)) {
+            Console::error("Could not find the specified folder, {$path}.");
+        }
+
         $this->root = $path;
 
         return $this;
     }
 
-    public function run(string $path)
+    public function run(string $path = null)
     {
         if ($path) {
             $this->setRoot($path);
@@ -42,6 +50,10 @@ final class Puny
         self::includeTestFiles($this->root);
 
         foreach (static::$tests as $name => $callback) {
+            if (! $this->shouldRun($name)) {
+                continue;
+            }
+
             try {
                 $callback();
 
@@ -72,6 +84,22 @@ final class Puny
             $this->failed,
             $this->skipped,
         ));
+    }
+
+    public function filterBy(string $pattern)
+    {
+        $this->options['filter'] = $pattern;
+
+        return $this;
+    }
+
+    private function shouldRun(string $name)
+    {
+        if (! $this->options['filter']) {
+            return true;
+        }
+
+        return strpos($name, $this->options['filter']) === false;
     }
 
     private static function requireIfReadable(string $path)
