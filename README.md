@@ -1,6 +1,6 @@
 # Puny
 
-Making unit testing in PHP simpler again. 👌
+Make unit testing in PHP simpler again. 👌
 
 ## Table of Contents
 
