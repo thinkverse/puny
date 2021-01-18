@@ -1,6 +1,6 @@
 # Puny
 
-The simplest unit testing library for all things PHP. 👌
+Making unit testing in PHP simpler again. 👌
 
 ## Table of Contents
 
