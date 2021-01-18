@@ -1,5 +1,15 @@
 # Puny
 
+## Table of Contents
+
+* [Installation](#installation)
+* [Usage](#usage)
+    * [Writing your first test](#writing-your-first-test)
+    * [Checking things are okay](#checking-things-are-okay)
+    * [Skipping tests](#skipping-tests)
+    * [Spying on functions](#spying-on-functions)
+* [Why does Puny exist?](#why-does-puny-exist)
+
 ## Installation
 
 To install Puny, run the following command in your project:
@@ -88,3 +98,5 @@ test('Example', function () {
     ok($exception->thrown[0] instanceof Exception, 'exceptions stored are objects');
 });
 ```
+
+## Why does Puny exist?
