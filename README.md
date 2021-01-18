@@ -102,3 +102,11 @@ test('Example', function () {
 ```
 
 ## Why does Puny exist?
+
+Puny is an effort to **make testing simpler again**. It was originally inspired by [this blog post](https://zserge.com/posts/minimal-testing/) about minimalist testing tools.
+ 
+Puny doesn't have all of the same assertion methods as [PHPUnit](https://phpunit.de/) and it never will. It's designed for testing prototypes, small packages and applications. 
+
+Puny also has a small function-based syntax, moving away from verbose test classes. It borrows this philosophy from the excellent [Pest](https://pestphp.com/) framework.
+
+Puny is also dependency free and has a small call-stack. This means your errors won't be clouded with a list of internal method calls, just a few small steps that Puny takes to make your testing experience a bit smoother.
