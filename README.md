@@ -28,9 +28,13 @@ To run Puny, use the following command:
 ./vendor/bin/puny
 ```
 
-This command will invoke Puny and attempt to run all of your tests. Puny assumes that your test files are found **inside of a `tests` folder in the root of your project**.
+This command will invoke Puny and attempt to run all of your tests.
 
-If this folder cannot be found, Puny will print an error in the terminal.
+By default, Puny will look for a **`tests` folder in the current working directory** and use that to search for test files. If you are using a different directory name, you can specify it when running Puny on the command-line:
+
+```bash
+./vendor/bin/puny ./tests-folder
+```
 
 ### Writing your first test
 
