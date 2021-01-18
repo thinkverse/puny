@@ -2,22 +2,30 @@
 <?php
 
 use Puny\Puny;
+use Puny\Support\Console;
 
 define('PUNY_VERSION', '0.0.3');
 
-(static function () {
+(static function () use ($argv) {
     $vendorPath = dirname(__DIR__, 4) . '/vendor/autoload.php';
     $localPath = dirname(__DIR__) . '/vendor/autoload.php';
-    $rootPath = null;
 
     if (is_readable($vendorPath)) {
         require_once $vendorPath;
-        $rootPath = dirname($vendorPath, 2) . '/tests';
     } else {
         require_once $localPath;
-        $rootPath = dirname($localPath, 2) . '/tests';
+    }
+
+    if (count($argv) >= 2) {
+        [, $folder] = $argv;
+    } else {
+        $folder = getcwd().'/tests';
+    }
+
+    if (! is_dir($folder)) {
+        Console::error("Could not find the specified folder, {$folder}.");
     }
 
     Puny::instance()
-        ->run($rootPath);
+        ->run($folder);
 })();
