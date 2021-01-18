@@ -1,5 +1,7 @@
 # Puny
 
+The simplest unit testing library for all things PHP. 👌
+
 ## Table of Contents
 
 * [Installation](#installation)
