@@ -15,5 +15,5 @@ test('The `eq` function works with callable', function () {
 });
 
 test('The `eq` function works with function', function () {
-    ok(eq(ceil(1.2), 2), '`eq` works.');
+    ok(eq(ceil(1.2), 2.0), '`eq` works.');
 });
