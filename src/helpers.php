@@ -33,19 +33,10 @@ function spy(callable $callback) {
  * @return bool
  */
 function eq($expected, $actual) {
-    if ($expected === $actual) {
-        return true;
-    }
+    $expected = is_callable($expected) ? $expected() : $expected;
+    $actual = is_callable($actual) ? $actual() : $actual;
 
-    if (is_callable($expected)) {
-        $expected = (\Closure::fromCallable($expected))();
-    }
-
-    if (is_callable($actual)) {
-        $actual = (\Closure::fromCallable($actual))();
-    }
-
-    return $expected == $actual;
+    return $expected === $actual;
 }
 
 function skip() {
