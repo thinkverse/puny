@@ -72,7 +72,7 @@ ok(1 + 2 === 3, 'math is good');
 
 ### Comparing equality with eq
 
-You can use the `eq` function to strictly compare if two values are equal. The first argument is your expected value. The second is your actual value. But they are interchangable and just a suggestion. The return value is a `bool` result of the comparison check.
+You can use the `eq` function to check if two values are **strictly** equal. The first argument is your expected value. The second is your actual value. But they are interchangable and just a suggestion. The return value is a `bool` result of the comparison check.
 
 > Can be used is in conjunction with `ok` for a more descriptive equality check.
 
