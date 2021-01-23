@@ -10,7 +10,7 @@ Make unit testing in PHP simpler again. 👌
   - [Usage](#usage)
     - [Writing your first test](#writing-your-first-test)
     - [Checking things are okay](#checking-things-are-okay)
-    - [Comparing equality with eq](#comparing-equality-with-eq)
+    - [Checking equality with eq](#checking-equality-with-eq)
     - [Skipping tests](#skipping-tests)
     - [Spying on functions](#spying-on-functions)
   - [Why does Puny exist?](#why-does-puny-exist)
@@ -70,7 +70,7 @@ You can use the `ok` function to check whether or not something correct (okay). 
 ok(1 + 2 === 3, 'math is good');
 ```
 
-### Comparing equality with eq
+### Checking equality with eq
 
 You can use the `eq` function to check if two values are **strictly** equal. The first argument is your expected value. The second is your actual value. But they are interchangable and just a suggestion. The return value is a `bool` result of the comparison check.
 
