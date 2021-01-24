@@ -72,14 +72,10 @@ ok(1 + 2 === 3, 'math is good');
 
 ### Checking equality with eq
 
-You can use the `eq` function to check if two values are **strictly** equal. The first argument is your expected value. The second is your actual value. But they are interchangable and just a suggestion. The return value is a `bool` result of the comparison check.
-
-> Can be used is in conjunction with `ok` for a more descriptive equality check.
+You can use the `eq` function to check if two values are **strictly** equal. The first argument is your expected value. The second is your actual value. But they are interchangable and just a suggestion. The third argument is the specific scenario you are testing. The return value is a `bool` result of the comparison check.
 
 ```php
-eq(3, 1 + 2);
-
-ok(eq(3, 1 + 2), 'math is good');
+eq(3, 1 + 2, 'math is good');
 ```
 
 ### Skipping tests
