@@ -1,6 +1,6 @@
 <?php
 
-use function Puny\{test, eq, ok};
+use function Puny\{test, eq};
 
 test('The `eq` function works', function () {
     eq(2, 1 + 1, '`eq` works.');
