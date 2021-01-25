@@ -4,13 +4,16 @@ Make unit testing in PHP simpler again. 👌
 
 ## Table of Contents
 
-* [Installation](#installation)
-* [Usage](#usage)
-    * [Writing your first test](#writing-your-first-test)
-    * [Checking things are okay](#checking-things-are-okay)
-    * [Skipping tests](#skipping-tests)
-    * [Spying on functions](#spying-on-functions)
-* [Why does Puny exist?](#why-does-puny-exist)
+- [Puny](#puny)
+  - [Table of Contents](#table-of-contents)
+  - [Installation](#installation)
+  - [Usage](#usage)
+    - [Writing your first test](#writing-your-first-test)
+    - [Checking things are okay](#checking-things-are-okay)
+    - [Checking equality with eq](#checking-equality-with-eq)
+    - [Skipping tests](#skipping-tests)
+    - [Spying on functions](#spying-on-functions)
+  - [Why does Puny exist?](#why-does-puny-exist)
 
 ## Installation
 
@@ -65,6 +68,14 @@ You can use the `ok` function to check whether or not something correct (okay). 
 
 ```php
 ok(1 + 2 === 3, 'math is good');
+```
+
+### Checking equality with eq
+
+You can use the `eq` function to check if two values are **strictly** equal. The first argument is your expected value. The second is your actual value. But they are interchangable and just a suggestion. The third argument is the specific scenario you are testing. The return value is a `bool` result of the comparison check.
+
+```php
+eq(3, 1 + 2, 'math is good');
 ```
 
 ### Skipping tests

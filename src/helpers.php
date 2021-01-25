@@ -26,6 +26,20 @@ function spy(callable $callback) {
     return new Spy($callback);
 }
 
+/**
+ * @param mixed  $expected
+ * @param mixed  $actual
+ * @param string $id
+ *
+ * @return bool
+ */
+function eq($expected, $actual, string $id) {
+    $expected = is_callable($expected) ? $expected() : $expected;
+    $actual = is_callable($actual) ? $actual() : $actual;
+
+    return ok($expected === $actual, $id);
+}
+
 function skip() {
     throw new SkippedException;
 }
