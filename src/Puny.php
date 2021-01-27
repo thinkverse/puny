@@ -75,7 +75,7 @@ final class Puny
             count(static::$tests) - $this->failed - $this->skipped,
             $this->failed,
             $this->skipped,
-            $end - $start
+            microtime(true) - $start
         ));
     }
 
