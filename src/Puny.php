@@ -38,6 +38,8 @@ final class Puny
             exit(1);
         }
 
+        $start = microtime(true);
+
         self::requireIfReadable($this->root.'/bootstrap.php');
         self::includeTestFiles($this->root);
 
@@ -66,11 +68,12 @@ final class Puny
         self::requireIfReadable($this->root.'/tidy-up.php');
 
         Console::write(sprintf(
-            "%s tests run. %s passed. %s failed. %s skipped.",
+            "%s tests run. %s passed. %s failed. %s skipped. %02.2f s",
             count(static::$tests),
             count(static::$tests) - $this->failed - $this->skipped,
             $this->failed,
             $this->skipped,
+            microtime(true) - $start
         ));
     }
 
