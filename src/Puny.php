@@ -67,8 +67,6 @@ final class Puny
 
         self::requireIfReadable($this->root.'/tidy-up.php');
 
-        $end = microtime(true);
-
         Console::write(sprintf(
             "%s tests run. %s passed. %s failed. %s skipped. %02.2f s",
             count(static::$tests),
