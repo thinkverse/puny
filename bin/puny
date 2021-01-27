@@ -4,7 +4,7 @@
 use Puny\Puny;
 use Puny\Support\Console;
 
-define('PUNY_VERSION', '0.2.0');
+define('PUNY_VERSION', '0.2.1');
 
 (static function () use ($argv) {
     $vendorPath = dirname(__DIR__, 4) . '/vendor/autoload.php';
